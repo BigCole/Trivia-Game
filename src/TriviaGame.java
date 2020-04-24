@@ -3,6 +3,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -20,7 +21,7 @@ public class TriviaGame {
 	public static void main(String[] args) {
 		PlayerTurn.setTurn(PlayerTurn.Player_1);
 		Players.startScore();
-		QuestionList.read();
+		QuestionList.read(new File("input.txt"));
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

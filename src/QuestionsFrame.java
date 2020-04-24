@@ -153,20 +153,12 @@ public class QuestionsFrame {
 				} else if(rdbtnNewRadioButton_1_1.isSelected()) {
 					ans = rdbtnNewRadioButton_1_1.getText().replaceAll("<html>", "").replaceAll("</html>", "");
 				}
-				if(correct.equals(ans)) {
+				if(Players.isAnswerCorrect(correct, ans)) {
 					Players.addPoints(points);
 				} else {
 					Players.removePoints(points);
 				}
-				TriviaGame.lblNewLabel_6.setText("Player 1 Score: " + Players.score1);
-				TriviaGame.lblNewLabel_6_1.setText("Player 2 Score: " + Players.score2);
-				TriviaGame.lblNewLabel_5.setText("Turn: " + PlayerTurn.getTurn().toString().replaceAll("_", " "));
-				frameQ.dispatchEvent(new WindowEvent(frameQ, WindowEvent.WINDOW_CLOSING));
-				TriviaGame.isQUp = false;
-				Players.gameCount++;
-				if(Players.gameCount == 25) {
-					Players.getWinner();
-				}
+				endTurn();
 			}
 		});
 		
@@ -184,4 +176,17 @@ public class QuestionsFrame {
 
 		
 	}
+	
+	public static void endTurn() {
+		TriviaGame.lblNewLabel_6.setText("Player 1 Score: " + Players.score1);
+		TriviaGame.lblNewLabel_6_1.setText("Player 2 Score: " + Players.score2);
+		TriviaGame.lblNewLabel_5.setText("Turn: " + PlayerTurn.getTurn().toString().replaceAll("_", " "));
+		frameQ.dispatchEvent(new WindowEvent(frameQ, WindowEvent.WINDOW_CLOSING));
+		TriviaGame.isQUp = false;
+		Players.gameCount++;
+		if(Players.gameCount == 25) {
+			Players.getWinner();
+		}
+	}
+	
 }

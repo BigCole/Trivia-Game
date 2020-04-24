@@ -47,12 +47,11 @@ public class QuestionList {
 	public static HashMap<Integer, String> MOVA = new HashMap<Integer, String>();
 
 	//Method to load the input.txt file into hashmaps for questions and answers
-	public static void read() {	
+	public static void read(File f) {	
 
-		File file = new File("input.txt");
 
 		try {
-			Scanner s = new Scanner(file);
+			Scanner s = new Scanner(f);
 			
 			USQ.put(100, s.nextLine());
 			US1A.put(1, s.nextLine());
