@@ -50,6 +50,18 @@ class SoftwareTests {
 	}
 	
 	@Test
+	void reliabilityTest2_() {
+		File f = new File("empty.txt");
+		assertNull(QuestionList.read(f));
+	}
+	
+	@Test
+	void reliabilityTest3() {
+		File f = null;
+		assertNull(QuestionList.read(f));
+	}
+	
+	@Test
 	void consistencyTest1() {
 		assertTrue(Players.isAnswerCorrect("correct answer", "correct answer"));
 		assertFalse(Players.isAnswerCorrect("correct answer", "incorrect answer"));
