@@ -48,7 +48,7 @@ public class QuestionList {
 
 	//Method to load the input.txt file into hashmaps for questions and answers
 	public static void read(File f) {	
-
+		if (f == null || f.length() == 0) { return null; }
 
 		try {
 			Scanner s = new Scanner(f);
