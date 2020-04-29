@@ -72,6 +72,18 @@ class SoftwareTests {
 	//This consistency test checks to make sure that correct and incorrect answers are processed correctly.
 	//This also accounts for null answers (if no answer is selected)
 	@Test
+	void reliabilityTest2_() {
+		File f = new File("empty.txt");
+		assertNull(QuestionList.read(f));
+	}
+	
+	@Test
+	void reliabilityTest3() {
+		File f = null;
+		assertNull(QuestionList.read(f));
+	}
+	
+	@Test
 	void consistencyTest1() {
 		assertTrue(QAStorage.isAnswerCorrect("correct answer", "correct answer"));
 		assertFalse(QAStorage.isAnswerCorrect("correct answer", "incorrect answer"));
