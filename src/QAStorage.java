@@ -3,52 +3,80 @@ import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class QuestionList {
+public class QAStorage {
 
+	//The first 5 HashMaps under this comment are the maps that store the questions for each category
+	//Ex. USQ stores the questions under the US history category. <pointValue, question>
+	//**NOTE**: ALL questions MUST end in a "?" in order to be compatible with our reliability tests in SoftwareTests.java 
 	public static HashMap<Integer, String> USQ = new HashMap<Integer, String>();
+	public static HashMap<Integer, String> UMD = new HashMap<Integer, String>();
+	public static HashMap<Integer, String> CS = new HashMap<Integer, String>();
+	public static HashMap<Integer, String> GEO = new HashMap<Integer, String>();
+	public static HashMap<Integer, String> MOV = new HashMap<Integer, String>();
+	
+	//The first 5 HashMaps under this comment are the answers that can be selected by the player for each of the 5 questions in the US History category
+	//Ex. US1A stores the possible answers to the 100-point question in US History. <index (1-4), answer>
 	public static HashMap<Integer, String> US1A = new HashMap<Integer, String>();
 	public static HashMap<Integer, String> US2A = new HashMap<Integer, String>();
 	public static HashMap<Integer, String> US3A = new HashMap<Integer, String>();
 	public static HashMap<Integer, String> US4A = new HashMap<Integer, String>();
 	public static HashMap<Integer, String> US5A = new HashMap<Integer, String>();
 	
-	public static HashMap<Integer, String> UMD = new HashMap<Integer, String>();
+	//The first 5 HashMaps under this comment are the answers that can be selected by the player for each of the 5 questions in the UMASS Dartmouth category
 	public static HashMap<Integer, String> UMD1A = new HashMap<Integer, String>();
 	public static HashMap<Integer, String> UMD2A = new HashMap<Integer, String>();
 	public static HashMap<Integer, String> UMD3A = new HashMap<Integer, String>();
 	public static HashMap<Integer, String> UMD4A = new HashMap<Integer, String>();
 	public static HashMap<Integer, String> UMD5A = new HashMap<Integer, String>();
 	
-	public static HashMap<Integer, String> CS = new HashMap<Integer, String>();
+	//The first 5 HashMaps under this comment are the answers that can be selected by the player for each of the 5 questions in the Computer Science category
 	public static HashMap<Integer, String> CS1A = new HashMap<Integer, String>();
 	public static HashMap<Integer, String> CS2A = new HashMap<Integer, String>();
 	public static HashMap<Integer, String> CS3A = new HashMap<Integer, String>();
 	public static HashMap<Integer, String> CS4A = new HashMap<Integer, String>();
 	public static HashMap<Integer, String> CS5A = new HashMap<Integer, String>();
 	
-	public static HashMap<Integer, String> GEO = new HashMap<Integer, String>();
+	//The first 5 HashMaps under this comment are the answers that can be selected by the player for each of the 5 questions in the Geography category
 	public static HashMap<Integer, String> GEO1A = new HashMap<Integer, String>();
 	public static HashMap<Integer, String> GEO2A = new HashMap<Integer, String>();
 	public static HashMap<Integer, String> GEO3A = new HashMap<Integer, String>();
 	public static HashMap<Integer, String> GEO4A = new HashMap<Integer, String>();
 	public static HashMap<Integer, String> GEO5A = new HashMap<Integer, String>();
 	
-	public static HashMap<Integer, String> MOV = new HashMap<Integer, String>();
+	//The first 5 HashMaps under this comment are the answers that can be selected by the player for each of the 5 questions in the Movies category
 	public static HashMap<Integer, String> MOV1A = new HashMap<Integer, String>();
 	public static HashMap<Integer, String> MOV2A = new HashMap<Integer, String>();
 	public static HashMap<Integer, String> MOV3A = new HashMap<Integer, String>();
 	public static HashMap<Integer, String> MOV4A = new HashMap<Integer, String>();
 	public static HashMap<Integer, String> MOV5A = new HashMap<Integer, String>();
 	
+	//These last 5 HashMaps reflect the CORRECT answer for each of the questions in each category.
+	//Ex. USA stores the correct answers for the US History category. <pointValue, question>
 	public static HashMap<Integer, String> USA = new HashMap<Integer, String>();
 	public static HashMap<Integer, String> UMDA = new HashMap<Integer, String>();
 	public static HashMap<Integer, String> CSA = new HashMap<Integer, String>();
 	public static HashMap<Integer, String> GEOA = new HashMap<Integer, String>();
 	public static HashMap<Integer, String> MOVA = new HashMap<Integer, String>();
 
-	//Method to load the input.txt file into hashmaps for questions and answers
+	//This method takes the selected answer and checks to see if it matches the correct answer
+	public static boolean isAnswerCorrect(String correct, String ans) {
+		if(ans.equals(correct)) {
+			return true;
+		}
+		return false;
+	}
+	
+	//Method to load the input.txt file into HashMaps for questions and answers
+	
+	//Format of the input.txt file goes from each question, top to bottom and from each category, left to right
+	//Question
+	//Possible Answer
+	//Possible Answer
+	//Possible Answer
+	//Possible Answer
+	//.... for all questions and possible answers
+	//After all 25 questions and possible answers are in the file, the CORRECT answers are stored (duplicate of one of the possible answers)
 	public static void read(File f) {	
-
 
 		try {
 			Scanner s = new Scanner(f);
@@ -240,5 +268,5 @@ public class QuestionList {
 		}
 
 	}
-
+	
 }

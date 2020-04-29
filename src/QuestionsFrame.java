@@ -5,105 +5,104 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 
 public class QuestionsFrame {
 
+	//This class' main function is the windows that pop up with questions and answer selections
 	
-	private static JFrame frameQ;
+	public static JFrame frameQ;
 	private static final ButtonGroup buttonGroup = new ButtonGroup();
 	private static final ButtonGroup buttonGroup_1 = new ButtonGroup();
-
-	/**
-	 * Initialize the contents of the frame.
-	 * @wbp.parser.entryPoint
-	 */
 	
+	//This HashMap will be replaced with the map that contains the correct answers to the questions for a category
+	//Ex. <questionIndex_(1-5), correctAnswer>
 	public static HashMap<Integer, String> correctMap = null;
 	
 	public static void initializeQ(String category, int points) {
-		
+		//qMap will store the questions for each category <Point_Value, Question>
+		//aMap will store the answers for each question <index (0-3), answer>
 		HashMap<Integer, String> qMap = null;
 		HashMap<Integer, String> aMap = null;
 		
+		//If statement will determine which category the question is and the nested if statement will determine the 
+		//point value of the question and set aMap to the appropriate answers HashMap
 		if(category.equals("US History")) {
-			qMap = QuestionList.USQ;
-			correctMap = QuestionList.USA;
+			qMap = QAStorage.USQ;
+			correctMap = QAStorage.USA;
 			if(points == 100) {
-				aMap = QuestionList.US1A;
+				aMap = QAStorage.US1A;
 			} else if(points == 200) {
-				aMap = QuestionList.US2A;
+				aMap = QAStorage.US2A;
 			} else if(points == 300) {
-				aMap = QuestionList.US3A;
+				aMap = QAStorage.US3A;
 			} else if(points == 400) {
-				aMap = QuestionList.US4A;
+				aMap = QAStorage.US4A;
 			} else if(points == 500) {
-				aMap = QuestionList.US5A;
+				aMap = QAStorage.US5A;
 			}
 			
 		} else if(category.equals("UMD")) {
-			qMap = QuestionList.UMD;
-			correctMap = QuestionList.UMDA;
+			qMap = QAStorage.UMD;
+			correctMap = QAStorage.UMDA;
 			if(points == 100) {
-				aMap = QuestionList.UMD1A;
+				aMap = QAStorage.UMD1A;
 			} else if(points == 200) {
-				aMap = QuestionList.UMD2A;
+				aMap = QAStorage.UMD2A;
 			} else if(points == 300) {
-				aMap = QuestionList.UMD3A;
+				aMap = QAStorage.UMD3A;
 			} else if(points == 400) {
-				aMap = QuestionList.UMD4A;
+				aMap = QAStorage.UMD4A;
 			} else if(points == 500) {
-				aMap = QuestionList.UMD5A;
+				aMap = QAStorage.UMD5A;
 			}
 			
 		} else if(category.equals("CS")) {
-			qMap = QuestionList.CS;
-			correctMap = QuestionList.CSA;
+			qMap = QAStorage.CS;
+			correctMap = QAStorage.CSA;
 			
 			if(points == 100) {
-				aMap = QuestionList.CS1A;
+				aMap = QAStorage.CS1A;
 			} else if(points == 200) {
-				aMap = QuestionList.CS2A;
+				aMap = QAStorage.CS2A;
 			} else if(points == 300) {
-				aMap = QuestionList.CS3A;
+				aMap = QAStorage.CS3A;
 			} else if(points == 400) {
-				aMap = QuestionList.CS4A;
+				aMap = QAStorage.CS4A;
 			} else if(points == 500) {
-				aMap = QuestionList.CS5A;
+				aMap = QAStorage.CS5A;
 			}
 		} else if(category.equals("GEO")) {
-			qMap = QuestionList.GEO;
-			correctMap = QuestionList.GEOA;
+			qMap = QAStorage.GEO;
+			correctMap = QAStorage.GEOA;
 			
 			if(points == 100) {
-				aMap = QuestionList.GEO1A;
+				aMap = QAStorage.GEO1A;
 			} else if(points == 200) {
-				aMap = QuestionList.GEO2A;
+				aMap = QAStorage.GEO2A;
 			} else if(points == 300) {
-				aMap = QuestionList.GEO3A;
+				aMap = QAStorage.GEO3A;
 			} else if(points == 400) {
-				aMap = QuestionList.GEO4A;
+				aMap = QAStorage.GEO4A;
 			} else if(points == 500) {
-				aMap = QuestionList.GEO5A;
+				aMap = QAStorage.GEO5A;
 			}
 		} else if(category.equals("MOV")) {
-			qMap = QuestionList.MOV;
-			correctMap = QuestionList.MOVA;
+			qMap = QAStorage.MOV;
+			correctMap = QAStorage.MOVA;
 			
 			if(points == 100) {
-				aMap = QuestionList.MOV1A;
+				aMap = QAStorage.MOV1A;
 			} else if(points == 200) {
-				aMap = QuestionList.MOV2A;
+				aMap = QAStorage.MOV2A;
 			} else if(points == 300) {
-				aMap = QuestionList.MOV3A;
+				aMap = QAStorage.MOV3A;
 			} else if(points == 400) {
-				aMap = QuestionList.MOV4A;
+				aMap = QAStorage.MOV4A;
 			} else if(points == 500) {
-				aMap = QuestionList.MOV5A;
+				aMap = QAStorage.MOV5A;
 			}
 		}
 		
@@ -111,6 +110,7 @@ public class QuestionsFrame {
 		frameQ.setBounds(100, 100, 800, 400);
 		frameQ.getContentPane().setLayout(null);
 		
+		//JLabel and Buttons to set up the radio boxes and labels for the question frame
 		JLabel lblNewLabel = new JLabel("<html>" + qMap.get(points) + "</html>");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel.setBounds(10, 11, 764, 68);
@@ -139,11 +139,16 @@ public class QuestionsFrame {
 		JButton btnNewButton = new JButton("Done");
 		buttonGroup_1.add(btnNewButton);
 		
+		//Action Listener for when the player presses the "Done" button in the question frame
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//num is the index of the question within the correctMap
+				//Ex. Question with point value 100 will be index 1
 				int num = points/100;
 				String correct = correctMap.get(num);
-				String ans = "";
+				String ans = null;
+				//correct = the correct answer to the question
+				//ans = the answer submitted by the player
 				if(rdbtnNewRadioButton.isSelected()) {
 					ans = rdbtnNewRadioButton.getText().replaceAll("<html>", "").replaceAll("</html>", "");
 				} else if(rdbtnNewRadioButton_1.isSelected()) {
@@ -153,12 +158,14 @@ public class QuestionsFrame {
 				} else if(rdbtnNewRadioButton_1_1.isSelected()) {
 					ans = rdbtnNewRadioButton_1_1.getText().replaceAll("<html>", "").replaceAll("</html>", "");
 				}
-				if(Players.isAnswerCorrect(correct, ans)) {
-					Players.addPoints(points);
-				} else {
+				//If the question was answered correctly, give them the points
+				//If it was answered incorrectly, take away the point value of the question / 2
+				if((ans == null) || (!QAStorage.isAnswerCorrect(correct, ans))) {
 					Players.removePoints(points);
+				} else {
+					Players.addPoints(points);
 				}
-				endTurn();
+				Players.endTurn();
 			}
 		});
 		
@@ -175,18 +182,6 @@ public class QuestionsFrame {
 		
 
 		
-	}
-	
-	public static void endTurn() {
-		TriviaGame.lblNewLabel_6.setText("Player 1 Score: " + Players.score1);
-		TriviaGame.lblNewLabel_6_1.setText("Player 2 Score: " + Players.score2);
-		TriviaGame.lblNewLabel_5.setText("Turn: " + PlayerTurn.getTurn().toString().replaceAll("_", " "));
-		frameQ.dispatchEvent(new WindowEvent(frameQ, WindowEvent.WINDOW_CLOSING));
-		TriviaGame.isQUp = false;
-		Players.gameCount++;
-		if(Players.gameCount == 25) {
-			Players.getWinner();
-		}
 	}
 	
 }

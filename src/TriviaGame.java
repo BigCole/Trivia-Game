@@ -1,3 +1,6 @@
+//No Trivial Matter by Pete Bulman and Cole Wagner
+//Created using Eclipse IDE, JUnit 5, and the WindowBuilder plugin (https://www.eclipse.org/windowbuilder/)
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -11,18 +14,18 @@ import javax.swing.ButtonGroup;
 
 public class TriviaGame {
 
+	//This is the main class for the trivia game.
 
-	private JFrame frame;
+	private static JFrame frame;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		PlayerTurn.setTurn(PlayerTurn.Player_1);
 		Players.startScore();
-		QuestionList.read(new File("input.txt"));
+		QAStorage.read(new File("input.txt"));
 		EventQueue.invokeLater(new Runnable() {
+			//Display the main game window
+			@SuppressWarnings("static-access")
 			public void run() {
 				try {
 					TriviaGame window = new TriviaGame();
@@ -34,21 +37,18 @@ public class TriviaGame {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
 	public TriviaGame() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-
+	//These are the labels to display the players' scores and whos turn it is
+	//They are outside of the initialize() method so they can be accessed and update from another class
 	public static JLabel lblNewLabel_5 = null;
 	public static JLabel lblNewLabel_6 = null;
 	public static JLabel lblNewLabel_6_1 = null;
 
+	//This boolean reflects if a question window is currently open.
+	//This is to prevent multiple question windows being open simultaneously
 	public static boolean isQUp = false;
 
 	private void initialize() {
@@ -471,6 +471,8 @@ public class TriviaGame {
 		btnNewButton_2_1_4.setBounds(1198, 544, 130, 50);
 		frame.getContentPane().add(btnNewButton_2_1_4);
 
+		//The labels below will display the players' scores and whos turn it is
+		
 		lblNewLabel_5 = new JLabel("Turn: " + PlayerTurn.getTurn().toString().replaceAll("_", " "));
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel_5.setBounds(594, 701, 256, 45);
